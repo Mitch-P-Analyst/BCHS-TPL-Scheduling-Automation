@@ -1,0 +1,34 @@
+# TPL — Tweedsmuir Park Lodge
+
+Three projects within the Tweedsmuir Park Lodge (TPL) system were produced. Each catering to a manual task requiring upwards of 30 minutes of daily duties for lodge or head office staff members. Leading up to and during a 16 week summer tourism season, these following projects are predicted to have saved 168 hours of manual labour tasks.
+
+
+## File
+With permisson, a copy of Tweedsmuir Park Lodge operations Google Sheet file has been produced to showcase the automation tasks presented below. 
+
+### Access
+![Link File Here](sdas)
+
+#### Data
+Names of guides and guests have been modified to provide privacy of those involved.
+
+#### Tabs
+
+- Activity Schedule
+    - Prior schedule production from TPL, produced with Google Sheets logic from import CSV files
+- References
+    - Hosting data for **VLOOKUP**, **FILTER** and **INDEX / MATCH** for references within automation production.
+
+
+## Automations
+
+### Automated Guest Activity Itinerary Generator
+
+Leading up to the tourism season, head office team members produce scheduled itinerary plans for each of the 292 reservations 1 month prior to arrival. Automation of this task reduced labour by outputing desired visual format in an transferable email template for each guest from the **Activity Schedule**. Using up the current activity itinerary information from guide scheduling.
+
+#### 01 Filter By Date & Reservation
+
+Code Block
+``` h
+=UNIQUE(FILTER({'Schedule - Reservations'!$D$8:$D},'Schedule - Reservations'!$B$8:$B = $A3,'Schedule - Reservations'!$B$8:$B <>""))
+```

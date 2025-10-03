@@ -35,13 +35,13 @@ This project involved a series of **Extract–Transform–Load (ETL)** automatio
 ### BCHS — Bella Coola Heli Sports (Multi-Lodge Operations)
 
 - **Condensed Heli-Skiing Package Tracker & Helicopter Scheduling View**
-  > Aggregates guest counts, package types (e.g. 3-day Group vs. 5-day Private heli-skiing), and inter-lodge transfers across multiple heli lodges. Outputs a condensed, scheduling-centric snapshot that helps management teams and senior operation allocate helicopters efficiently per lodge.
+  > Aggregates guest counts, package types (e.g. 3-day Group vs. 5-day Private heli-skiing), and lodge transfers across multiple heli lodges. Outputs a condensed, scheduling-centric snapshot that helps management teams and senior operation allocate helicopters efficiently per lodge.
 
 
 ## 🛠️ Tools & Methods
 
 - **Google Sheets**
-  - **VLOOKUP**, **FILTER**, **ARRAYFORMULA**, **IMPORTRANGE** , **MAP**, **LAMBDA**, **MOD**
+  - **VLOOKUP**, **FILTER**, **ARRAYFORMULA**, **IMPORTRANGE** , **MAP**, **LAMBDA**, **MOD**, **INDEX**, **MATCH**, **REGEXMATCH**, 
   - SQL-like logic and named ranges
   - Conditional formatting for at-a-glance reporting
 - **Data Design**
@@ -51,11 +51,11 @@ This project involved a series of **Extract–Transform–Load (ETL)** automatio
 
 ## 👥 Audience & Use Cases
 
-| Team        | Output Used For                                     |
-|-------------|------------------------------------------------------|
+| Team             | Output Used For                                     |
+|------------------|-----------------------------------------------------|
 | **Front Desk**   | Guest itinerary distribution & check-ins            |
 | **Guides**       | Daily activity briefings and scheduling             |
-| **Kitchen Staff**| Meal prep based on activity & guest requirements   |
+| **Kitchen Staff**| Meal prep based on activity & guest requirements    |
 | **Ops Managers** | Helicopter usage planning across 4–5 remote lodges  |
 
 ---
