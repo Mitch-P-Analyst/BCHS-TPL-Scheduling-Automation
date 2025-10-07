@@ -22,13 +22,13 @@ This project involved a series of **Extract–Transform–Load (ETL)** automatio
 ### TPL — Tweedsmuir Park Lodge
 
 - **Automated Guest Activity Itinerary Generator**
-  > Generates clean, email-ready itineraries from guest booking schedules,removing the need for manual formatting and lookup.
+  - Generates clean, email-ready itineraries from guest booking schedules,removing the need for manual formatting and lookup.
 
 - **Live Daily Guide & Guest Activity Schedule**
-  > Consolidates guide assignments and guest bookings into a clear daily schedule for lodge managers and front desk staff.
+  - Consolidates guide assignments and guest bookings into a clear daily schedule for lodge managers and front desk staff.
 
 - **Lunch Requirements Generator**
-  > Uses formulas like **VLOOKUP**, **FILTER**, **MAP** and **ARRAYFORMULA** to calculate total lunch package requirements by guest, guide, and activity—outputting a clean prep list for the kitchen team.
+  - Uses formulas like **VLOOKUP**, **FILTER**, **MAP**, **LAMBDA** and **ARRAYFORMULA** to calculate total lunch package requirements by guest, guide, and activity—outputting a clean prep list for the kitchen team.
 
 ---
 

@@ -454,8 +454,175 @@ The final workflow output is visual friendly printable/digital lunch form for ki
 
 This process saves ~25 minutes per day across the 16 week season, about ~46 hours of labour eliminated, to be used towards alternative operation tasks or enhancing customer service.
 
+
+
+
+
+
+
+
 ### Daily Activity Schedule
+
+A similar task to the Lunch Form, the Daily Activity Schedule automates the guide and reservation activities for a chosen date. Previously, receptionists read the  'Schedule - Reservations'ssheet and produced a typed/written Daily Acitivity List for guest locations in case of Emergency Responses Protocol procedures and operational efficiency for housekeeping and hospitality preparation.  
+
+Providing operational awareness of guest locations in case of Emergency Responses Protocol procedures, operational preparation for housekeeping, guides and hospitality.
+
+The automation reduce the ~30 minute  per day task to ~5 minutes per day. The procedure extracts guides, activities, guest reservations and guests counts, tranposing them into a singular readable template.
 
 #### Process
 
-##### Filtering
+The automation is seperated into two sections; AM activties and PM activities, across six columns. The following code blocks will focus upon AM activities.
+
+##### 01 | Extract
+
+- **'Live Daily Schedule'!A7:A17 - AM Guides**
+    - Extract guides for their AM activity
+
+``` excel-formula
+=Let(
+AM_guides, 'Schedule - Reservations'!$Q$8:$Q,                                       /* All guides on AM activities */
+dates, 'Schedule - Reservations'!$B$8:$B,                                           /* Date column for all reservations */
+chosen_date, $A$3,                                                                  /* Date chosen for Live Daily Schedule input data */
+
+UNIQUE(     
+    FILTER(                                                                         /* Filter for unique AM guides on chosen date */
+        IF(
+            {AM_guides} = "",
+                "",
+            {AM_guides}
+            ), 
+        dates = chosen_date,
+        dates <>""
+        )
+    )
+)
+```
+
+- **'Live Daily Schedule'!B7:B17 - Earliest AM Activity Times**
+    - Extract scheduled activity time
+
+``` excel-formula
+=LET(
+guide, $A7,                                                                         /* Guide from unique filtering in above spill data */
+AM_time,'Schedule - Reservations'!$P$8:$P,                                          /* AM activity times */
+dates,'Schedule - Reservations'!$B$8:$B,                                            /* Date column for all reservations */
+chosen_date, $A$3,                                                                  /* Date chosen for Live Daily Schedule input data */
+AM_guides, 'Schedule - Reservations'!$Q$8:$Q,                                       /* All guides on AM activities */
+
+IF(guide = "None", "-",                                                             /* If no guide assigned (ie self-guided), return "-" */
+   IF( guide<>"",
+       MIN(
+        UNIQUE(
+          FILTER( {AM_time}, dates = chosen_date, AM_guides = guide)                /* Filter for earliest activity time for each guide's activity */
+            )
+         )
+    ,"")                                                                            /* If guide blank, return blank */
+  )
+)
+```
+
+- **'Live Daily Schedule'!C7:C17 - Assigned Vehicle**
+    - Extract the guide's assigned vehicle
+
+``` excel-formula
+=LET(
+guide, $A7,                                                                         /* Guide from unique filtering in above spill data */
+AM_vehicles, 'Schedule - Reservations'!$R$8:$R,                                     /* AM vehicle allocations (source data) */
+dates, 'Schedule - Reservations'!$B$8:$B,                                           /* Date column for all reservations */
+chosen_date, $A$3,                                                                  /* Date chosen for Live Daily Schedule input data */
+AM_guides, 'Schedule - Reservations'!$Q$8:$Q,                                       /* All guides on AM activities */
+
+IF(guide <>"", 
+   textjoin(" , ", true,                                                            /* For multiple vehicles, join by "," */
+      UNIQUE(
+        FILTER({AM_vehicles}, dates = chosen_date, AM_guides = guide)               /* Filter for AM assigned vehicles on chosen date for each guide's activity */
+           ),
+        ""),                                                                        /* If no assigned vehicle, return blank */
+ "")
+)
+```
+
+- **'Live Daily Schedule'!E7:E17 - Guest Count**
+    - Extract guest quantity on each activity
+
+``` excel-formula
+=LET(
+guide, $A7,                                                                         /* Guide from unique filtering in above spill data */
+guests_qty, 'Schedule - Reservations'!$J$8:$J,                                      /* guest count for each reservation (source data) */
+dates, 'Schedule - Reservations'!$B$8:$B,                                           /* Date column for all reservations */
+chosen_date, $A$3,                                                                  /* Date chosen for Live Daily Schedule input data */
+AM_guides, 'Schedule - Reservations'!$Q$8:$Q,                                       /* All guides on AM activities */
+
+IF( guide <>"",
+   SUM(                                                                             /* SUM the total guest count that is assigned to each guide */
+     FILTER({guests_qty},
+          dates = chosen_date,
+          AM_guides = guide)
+     ),
+ "")
+)
+```
+
+- **'Live Daily Schedule'!F7:F17 - Scheduled Reservation**
+    - Extract the primary contact name from each reservation for each activity
+
+``` excel-formula
+=LET(
+guide, $A7,                                                                         /* Guide from unique filtering in above spill data */
+reservations, 'Schedule - Reservations'!$D$8:$D,                                    /* All guest reservations */
+dates, 'Schedule - Reservations'!$B$8:$B,                                           /* Date column for all reservations */
+chosen_date, $A$3,                                                                  /* Date chosen for Live Daily Schedule input data */
+AM_guides, 'Schedule - Reservations'!$Q$8:$Q,                                       /* All guides on AM activities */
+
+IF( guide <> "", 
+  TEXTJOIN(", ", TRUE,                                                              /* For multiple reservation values, join by "," */
+    UNIQUE(
+      FILTER(                                                                       
+        ARRAYFORMULA(                                                               /* With Regex, produce array of reservations, replacing any value prior to ":", "-" with blank */
+          REGEXREPLACE( reservations, ".*(?: : | - )", "")                              /* Cleans reservation formatting for readability */
+        ), 
+        (dates = chosen_date) *                                                     
+        (AM_guides = guide)
+      )
+    )
+  ), 
+"")
+)
+
+```
+
+##### 02 | Transform
+
+
+- **'Live Daily Schedule'!D7:D17 - Activity Names**
+    - Extract and transform into simplified activity names
+
+``` excel-formula
+=LET(
+guide, $A7,                                                                         /* Guide from unique filtering in above spill data */
+AM_activities, 'Schedule - Reservations'!$O$8:$O,                                   /* AM activities list (source data) */
+activities_references, Dropdowns!$B$3:$E$68,                                        /* VLOOKUP Activity naming reference table */
+dates, 'Schedule - Reservations'!$B$8:$B,                                           /* Date column for all reservations */
+chosen_date, $A$3,                                                                  /* Date chosen for Live Daily Schedule input data */
+AM_guides, 'Schedule - Reservations'!$Q$8:$Q,                                       /* All guides on AM activities */
+
+IF(guide = "None","No Activity",                                                    /* If guest(s) has no guide assigned, return "No Activity" */
+  IF(guide <> "" ,
+     textjoin(" , ", true,                                                          /* If guide assigned to multiple activities, join by "," */
+         UNIQUE(
+           FILTER(                                                                  
+             VLOOKUP(AM_activities, activities_references, 3, FALSE),               /* VLOOKUP simplified activity name */
+                 (dates = chosen_date) *
+                 (AM_guides = guide)
+               )
+             ),
+         ""),
+   "")
+  )
+)
+```
+
+#### Summary
+The final workflow output is visual friendly printable/digital Daily Activity Schedule for guides and operational employees to view the day's operation.
+
+This process saves ~25 minutes per day across the 16 week season, about ~46 hours of labour eliminated, to be used towards alternative operation tasks or enhancing customer service.
