@@ -7,7 +7,7 @@ Three projects within the Tweedsmuir Park Lodge (TPL) system were produced. Each
 With permisson, a copy of Tweedsmuir Park Lodge operations Google Sheet file has been produced to showcase the automation tasks presented below. 
 
 ### Access
-![Link File Here](sdas)
+![Link File Here](To_Proivde)
 
 #### Data
 Names of guides and guests have been modified to provide privacy of those involved.
@@ -131,6 +131,8 @@ ARRAYFORMULA(weekdays)
 #### Summary
 
 The excel code provided above successfully automates a useable email template to communicate individual reservation activity interaries with up to date guided schedules.
+
+Used by the sales team at Tweedsmuir Park Lodge for the ~292 reservations across the 2025 summer season, this saved ~5 minutes per reservation, accumlating **~24 hours**.
 
 
 
