@@ -1,7 +1,7 @@
 # BCHS-TPL-Scheduling-Automation
 During my time with **Bella Coola Heli Sports (BCHS)** and **Tweedsmuir Park Lodge (TPL)**, I identified opportunities to streamline internal operations by building **lightweight, spreadsheet-driven data pipelines** to eliminate repetitive manual work.
 
-Upon my first innovative success with Daily Live Schedules, I was further tasked to develop additional data pipelines, from generating guest itineraries to coordinating helicopter capacity across multiple remote lodges. Each tool was designed to transform raw operational data into actionable, human-readable outputs for frontline teams.
+Upon my first success with Daily Live Schedules, I was further tasked to develop additional data pipelines, from generating guest itineraries to coordinating helicopter capacity across multiple remote lodges. Each tool was designed to transform raw operational data into actionable, human-readable outputs for frontline teams.
 
 
 ## Project Overview
@@ -17,7 +17,7 @@ This project involved a series of **Extract–Transform–Load (ETL)** automatio
 - ✅ **Clarity**: Ensured staff received clear, consistent, and up-to-date information
 - ✅ **Repeatability**: Enabled reusability across seasons, adaptable for new lodge operations
 
-## 📦 Featured Automations
+## Featured Automations
 
 ### TPL — Tweedsmuir Park Lodge
 
@@ -40,7 +40,7 @@ This project involved a series of **Extract–Transform–Load (ETL)** automatio
   > Aggregates guest counts, package types (e.g. 3-day Group vs. 5-day Private heli-skiing), and lodge transfers across multiple heli lodges. Outputs a condensed, scheduling-centric snapshot that helps management teams and senior operation allocate helicopters efficiently per lodge.
 
 
-## 🛠️ Tools & Methods
+## Tools & Methods
 
 - **Google Sheets**
   - **VLOOKUP**, **FILTER**, **ARRAYFORMULA**, **IMPORTRANGE** , **MAP**, **LAMBDA**, **MOD**, **INDEX**, **MATCH**, **REGEXMATCH**, 
@@ -62,7 +62,7 @@ This project involved a series of **Extract–Transform–Load (ETL)** automatio
 
 ---
 
-## 🗂️ Repository Structure
+## Repository Structure
 ```
 TPL-BCHS-Guide-Schedule-Automation/
 ├── README.md
@@ -83,4 +83,5 @@ TPL-BCHS-Guide-Schedule-Automation/
 ## 🌱 Next Steps
 
 These tools were originally built in Google Sheets, but many could be **migrated to Python, Dash, or Looker Studio** for greater scalability, backend integration, or API-driven scheduling workflows.
+
 

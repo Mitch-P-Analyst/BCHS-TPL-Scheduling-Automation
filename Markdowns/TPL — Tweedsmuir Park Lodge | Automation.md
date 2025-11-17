@@ -7,10 +7,17 @@ Three projects within the Tweedsmuir Park Lodge (TPL) system were produced. Each
 With permisson, a copy of Tweedsmuir Park Lodge operations Google Sheet file has been produced to showcase the automation tasks presented below. 
 
 ### Access
-![Link File Here](To_Proivde)
+[Anonymized Summer Activity Schedule](https://docs.google.com/spreadsheets/d/1HYF0Plj47xlFxR2JsYIqgn8zZWyBL2J56IVcV2gYL8k/edit?usp=sharing)
 
 #### Data
-Names of guides and guests have been modified to provide privacy of those involved.
+The original activity schedule contains personal guest and staff information and is not included in this repository.
+
+This repo contains:
+
+- The full anonymisation pipeline (anonymize_activity_schedule.ipynb)
+- Tanonymised example outputs (Anonymized_Activity_Schedule.csv, etc.)
+
+Users can adapt the pipeline to their own data by supplying a CSV with the same schema.
 
 #### Source Sheets
 
