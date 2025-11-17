@@ -12,10 +12,11 @@ With permisson, a copy of Tweedsmuir Park Lodge operations Google Sheet file has
 #### Data
 Names of guides and guests have been modified to provide privacy of those involved.
 
-#### Tabs
+#### Source Sheets
 
 - Activity Schedule
-    - Prior schedule production from TPL, produced with Google Sheets logic from import CSV files
+    - Source Table
+        - Prior schedule production from TPL, produced with Google Sheets logic from import CSV files
 - Dropdowns
     - Hosting data for **VLOOKUP**, **FILTER** and **INDEX / MATCH** for references within automation production.
 
@@ -28,6 +29,7 @@ Leading up to the tourism season, head office prepares itinerary plans for each 
 #### Process
 
 > Source Information | Sheet **'Schedule - Reservations'!**
+
 > Pipeline Output | Sheet **'Guest Activity Itinerary'!**
 
 ##### 01 | Extract Source Data
